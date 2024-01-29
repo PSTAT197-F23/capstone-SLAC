@@ -13,5 +13,5 @@ Sichen Zhong, Haoran Yan, Kylie Maeda, Chris Zhao, David Lin, Jade Thai, Azfal P
 - Meeting Organizer: Kylie
 - Repository and Data Manager: Chris, David
 - Notetaker: Jade, Azfal
-
+- Mentor: Laura
 
