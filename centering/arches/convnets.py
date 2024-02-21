@@ -3,7 +3,8 @@
 ## place conv net classes here
 
 
-class TestMe:
+class TestHello:
     def __init__(self):
         print("hello")
+
 
