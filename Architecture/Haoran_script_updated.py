@@ -1,11 +1,19 @@
 #!/usr/bin/env python
 from argparse import ArgumentParser
+
 parser = ArgumentParser()
-parser.add_argument("lr", type=float, default=0.03, help="learning rate (default=0.03)")
+parser.add_argument("--lr", type=float, default=0.03, help="learning rate (default=0.03)")
 
-parser.add_argument("size", type=int, default=5000, help="total size (default=5000)")
-
+parser.add_argument("--size", type=int, default=5000, help="total size (default=5000)")
+parser.add_argument("--master", type=str, default="master.hdf5", help="path to master file (default: master.hdf5)")
+parser.add_argument("--wd", type=float, default=0.005, help="weight decay for SGD")
+parser.add_argument("--mom", type=float, default=0.9, help="momentum for SGD")
+parser.add_argument("--loss", type=str, choices=["euclid", "mae"], help="euclid or mae", default="euclid")
+parser.add_argument("--bs", default=16, type=int, help="batch size")
+parser.add_argument("--noNorm", action="store_true", help="dont divide the loss by 820 (image dimension)")
+parser.add_argument("--n", default=50, type=int, help="number of epochs")
 args = parser.parse_args()
+
 learning_rate = args.lr
 total_size = args.size
 print("lr",learning_rate)
@@ -110,7 +118,7 @@ class ConvNeuralNet(nn.Module):
         x = self.predictor(x)
         return x
 
-h = h5py.File("master.hdf5", "r")
+h = h5py.File(args.master, "r")
 
 
 class TrainingData(Dataset):
@@ -169,7 +177,7 @@ class TrainingData(Dataset):
     
         return imgs, labels
 
-training_data = TrainingData('master.hdf5')
+training_data = TrainingData(args.master)
 
 # Create DataLoader instances for training and testing
 #train_dataloader = DataLoader(training_data, batch_size=64, shuffle=True)
@@ -203,8 +211,9 @@ print(f"Labels batch shape: {train_labels.size()}")
 model = ConvNeuralNet()
 if use_gpu:
     model = model.cuda()
-    
-optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, weight_decay = 0.005, momentum = 0.9)  
+    print("Model is using CUDA")
+
+optimizer = torch.optim.SGD(model.parameters(), lr=learning_rate, weight_decay = args.wd, momentum = args.mom)  
 
 print(summary(model, input_size=(1, 820, 820)))
 
@@ -219,19 +228,26 @@ class EuclideanDistanceLoss(nn.Module):
         mean_loss = torch.mean(loss)
 
         return mean_loss
-criterion = EuclideanDistanceLoss()
+if args.loss=="euclid":
+    criterion = EuclideanDistanceLoss()
+elif args.loss=="mae":
+    criterion = torch.nn.L1Loss() 
 
+num_epochs = args.n
+normalize = not args.noNorm
 
-num_epochs = 50
-
+nbatch = len(train_dataloader)
+scale = 820 if normalize else 1
 for epoch in range(num_epochs):
     model.train()  
     total_train_loss = 0
     
     # Training phase
-    for images, labels in train_dataloader:
+    for i_batch, (images, labels) in enumerate(train_dataloader):
         images = images.to(device).unsqueeze(1)
-        labels = labels.to(device).squeeze(-1) /820
+        labels = labels.to(device).squeeze(-1)
+        if normalize:
+            labels /= scale 
         #print("Labels:",torch.mean(labels*820, 0))
         outputs = model(images)
         #print("Outputs:",torch.mean(outputs*820, 0))
@@ -242,8 +258,9 @@ for epoch in range(num_epochs):
         optimizer.step()
         
         total_train_loss += loss.item()
-        print(loss.item())
-    avg_train_loss = total_train_loss / len(train_dataloader)
+        end = "\n" if i_batch==nbatch-1 else "\r"
+        print(f"batch {i_batch+1}/{nbatch}: loss={loss.item()*scale} pixels", end=end, flush=True)
+    avg_train_loss = total_train_loss / len(train_dataloader) # this is a mean of means
     print(f'Epoch [{epoch+1}/{num_epochs}], Training Loss: {avg_train_loss:.4f}')
 
     # Validation phase
@@ -252,15 +269,17 @@ for epoch in range(num_epochs):
     with torch.no_grad():
         for images, labels in val_dataloader:
             images = images.to(device).unsqueeze(1)
-            labels = labels.to(device).squeeze(-1) /820
+            labels = labels.to(device).squeeze(-1)
+            if normalize:
+                labels /= scale
             
             outputs = model(images)
             loss = criterion(outputs, labels)
             
             total_val_loss += loss.item()
     
-    avg_val_loss = total_val_loss / len(val_dataloader)
-    print(f'Epoch [{epoch+1}/{num_epochs}], Validation Loss: {avg_val_loss:.4f}')
+    avg_val_loss = total_val_loss / len(val_dataloader) # this is a mean of means
+    print(f'Epoch [{epoch+1}/{num_epochs}], Validation Loss: {avg_val_loss*scale:.4f} pixels')
 
 #torch.cuda.empty_cache()
 
@@ -273,8 +292,9 @@ with torch.no_grad():
         labels = labels.to(device)
         labels = labels.squeeze(-1)
         outputs = model(images)
-        print("outputs", outputs*820)
+        
+        print("outputs", outputs*scale)
         print("labels",labels)
-        loss = criterion(outputs*820, labels)
+        loss = criterion(outputs*scale, labels)
         print(loss)
 
