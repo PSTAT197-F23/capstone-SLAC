@@ -1,5 +1,10 @@
 #!/usr/bin/env python
 # coding: utf-8
+from argparse import ArgumentParser
+parser = ArgumentParser()
+parser.add_argument("--master", type=str, help="path to the master hdf5 file", required=True)
+args = parser.parse_args()
+
 
 # ### Load Dataset
 
@@ -16,7 +21,7 @@ print(torch.__version__)
 
 import h5py
 
-h = h5py.File("master.hdf5", "r")
+h = h5py.File(args.master, "r")
 
 
 # In[2]:
@@ -135,8 +140,8 @@ class TrainingData(Dataset):
         imgs = h['images']
         # grab the labels 
           # first find the indexes with the attribbutes 
-        idx1 = list(h['labels'].attrs['names']).index('cent_fast_train')
-        idx2 = list(h['labels'].attrs['names']).index('cent_slow_train')
+        idx1 = list(h['labels'].attrs['names']).index('pitch_deg')
+        idx2 = list(h['labels'].attrs['names']).index('yaw_deg')
         # then we extract 
         labels = h['labels'][:, [idx1, idx2]]
     
@@ -147,7 +152,7 @@ class TrainingData(Dataset):
 
 
 # Create an instance of the TrainingData class
-training_data = TrainingData('master.hdf5')
+training_data = TrainingData(args.master)
 
 # Create DataLoader instances for training and testing
 train_dataloader = DataLoader(training_data, batch_size=64, shuffle=True)
