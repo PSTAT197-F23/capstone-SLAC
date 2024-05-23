@@ -2,10 +2,11 @@
 
 Usage in terminal: 
 
-> python test.py arg1 arg2
+> python test.py arg1 arg2 arg3
 
 - arg1: number of activations in model architecture
 - arg2: model path (path to file containing trained model parameters)
+- arg3: test data path (path to folder containing testing data; not master file)
 '''
 
 print('Importing modules...')
@@ -16,6 +17,7 @@ import h5py
 import os
 import numpy as np
 import pandas as pd
+from torch import nn
 
 # store number of activations
 try:
@@ -29,6 +31,9 @@ print('Number of activations:', activations)
 # store command line path argument
 path = sys.argv[2] 
 print('Model path:', path)
+
+# store test data path argument
+test_data = sys.argv[3]
 
 # initialize resnet18 model
 print('Initializing model...')
@@ -47,15 +52,31 @@ model = model.to('cpu')
 # initialize list of results
 results = []
 
+# instantiate criterion
+criterion = nn.L1Loss()
+
+# initialize metric
+loss = 0
+
 # loop through each file in test_data
-for file in os.listdir('test_data'):
-    if file[:4] == 'rank':
+for file in os.listdir(test_data):
+    if file[-2:] == 'h5':
 
         # read in file
-        h = h5py.File('test_data/'+file, 'r')
+        h = h5py.File(os.path.join(test_data, file), 'r')
 
         # get number of images in file
         N = h['images'].shape[0]
+
+        # try to get labels
+        try:
+            idx1 = list(h['labels'].attrs['names']).index('cent_fast_train')
+            idx2 = list(h['labels'].attrs['names']).index('cent_slow_train')
+            label_array = h['labels'][:, [idx1, idx2]]
+            labels = True
+            
+        except:
+            labels = False
 
         # loop through each image in the file
         for i_img in range(N):
@@ -69,19 +90,42 @@ for file in os.listdir('test_data'):
                 pred = model(img_t)[0]
 
             # store x,y tensor as two floats
-            x = float(pred[0])
-            y = float(pred[1])
-            print(x, y)
+            x_pred = float(pred[0])
+            y_pred = float(pred[1])
 
-            # store result: [file name, image index, (x prediction, y prediction)]
-            result = [file, i_img, (x, y)]
-            results.append(result)
+            # if we have labels, print and store them in data frame
+            if labels:
+                label = label_array[i_img] - 410
+                x_actual, y_actual = label
+                print(f'PREDICTION: ({x_pred:<5f}, {y_pred:<5f})  |  ACTUAL: ({x_actual:<5f}, {y_actual:<5f})')
+    
+                # compute the test losses and accumulate
+                loss += criterion(pred, torch.tensor(label)).item()
+                
+                # store result: [file name, image index, x prediction, y prediction, x actual, y actual]
+                result = [file, i_img, x_pred, y_pred, x_actual, y_actual]
+                results.append(result)
+
+            # if there are no labels
+            else:
+                print(f'PREDICTION: ({x_pred}, {y_pred})')
+                
+                # store result: [file name, image index, x prediction, y prediction]
+                result = [file, i_img, x_pred, y_pred]
+                results.append(result)
+
+# get the average loss
+loss /= len(results)
+print(loss)
 
 # name of results file path
-results_path = f'results/preds_{path.split("/")[-1]}.csv'
+results_path = f'results/preds_{test_data.split("/")[-1]}_{path.split("/")[-1]}.csv'
 
 # convert results to data frame
-results_df = pd.DataFrame(results, columns=['File Name', 'Image Index', 'Prediction'])
+if labels:
+    results_df = pd.DataFrame(results, columns=['File Name', 'Image Index', 'X Prediction', 'Y Prediction', 'X Actual', 'Y Actual'])
+else:
+    results_df = pd.DataFrame(results, columns=['File Name', 'Image Index', 'X Prediction', 'Y Prediction'])
 
 # save results data frame to CSV file
 results_df.to_csv(results_path, index=False)
