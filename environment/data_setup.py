@@ -8,11 +8,12 @@ import os
 
 class ImageFolder(Dataset):
     # initialize with the directory path to master as well as the optional transform
-    def __init__(self, target_dir:str, transform = None, target_transform = None):
+    def __init__(self, target_dir:str, transform = None, target_transform = None, cent = True):
         # initalize the parameters
         self.target_dir = target_dir
         self.transform = transform 
         self.target_transform = target_transform
+        self.cent = cent
         self.imgs, self.labels = self._extract_data()
         
     def _extract_data(self, **kwargs):
@@ -26,8 +27,13 @@ class ImageFolder(Dataset):
         imgs = h['images']
         # grab the labels 
           # first find the indexes with the attribbutes 
-        idx1 = list(h['labels'].attrs['names']).index('cent_fast_train')
-        idx2 = list(h['labels'].attrs['names']).index('cent_slow_train')
+        if self.cent:
+            idx1 = list(h['labels'].attrs['names']).index('cent_fast_train')
+            idx2 = list(h['labels'].attrs['names']).index('cent_slow_train')
+        else:
+            idx1 = list(h['labels'].attrs['names']).index('pitch_deg')
+            idx2 = list(h['labels'].attrs['names']).index('yaw_deg') 
+            print('tilt dataset used!')     
         # then we extract 
         labels = h['labels'][:, [idx1, idx2]]
         return imgs, labels
@@ -92,7 +98,7 @@ def create_validation(data, train_prop):
 def create_dataloaders(training_dir:str, train_batch_size:int,
                        test_batch_size:int, num_workers:int,
                        testing_dir=None, transform=None, target_transform=None,
-                       train_prop=0.8):
+                       train_prop=0.8, cent = True):
     '''
         This function will use all of the tools we created to create a training and 
         testing set. We will utilize the ImageFolderCustom class and our create validiation
@@ -113,7 +119,7 @@ def create_dataloaders(training_dir:str, train_batch_size:int,
     '''
 
     # we first create the dataset 
-    data = ImageFolder(training_dir, transform = transform, target_transform=target_transform)
+    data = ImageFolder(training_dir, transform = transform, target_transform=target_transform, cent = cent)
 
 
     # we then call the create validation to create an aritifical testing set 

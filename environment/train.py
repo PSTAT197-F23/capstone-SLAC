@@ -37,6 +37,8 @@ parser.add_argument("--test_bs", type=int, help = "Testing batch size")
 # parameter for the training set size. This is for a proportion
 parser.add_argument("--train_size", type=float, help = "The proportion of the data for training")
 
+# parameter for determining subgroup data. 
+parser.add_argument("--tilt", action='store_true', help = "Nothing = cent data, False = tilt data") 
 
 # parameter for the image transformation if image_transform is called 
 parser.add_argument("--image_function", type=str, default = None, help = "The function used to transform the image data")
@@ -105,7 +107,6 @@ print(device)
 
 #### GETTING THE DATALOADERS ####################################################################
 
-
 data = args.data_file
 training_batch_size = args.train_bs
 testing_batch_size = args.test_bs
@@ -127,7 +128,8 @@ training_dataloader, testing_dataloader = create_dataloaders(training_dir=data,
                                                             num_workers=os.cpu_count(),
                                                             train_prop=train_proportion,
                                                             transform=image_function,
-                                                            target_transform=target_function
+                                                            target_transform=target_function,
+                                                            cent= not args.tilt
                                                             )
 
 ##################### GETTING THE RESNET ARCHITECTURE ############################################
