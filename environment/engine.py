@@ -69,7 +69,7 @@ def train_step(model:torch.nn.Module,
             f"batch {i_batch+1}/{nbatch}: loss={loss_mae.item()*scale:.2f}", end=end, flush=True
         )
     
-        train_mae /= len(dataloader)
+    train_mae /= len(dataloader)
     return train_mae
 
 
