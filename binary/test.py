@@ -70,8 +70,8 @@ for file in os.listdir(test_data):
 
         # try to get labels
         try:
-            idx1 = list(h['labels'].attrs['names']).index('cent_fast_train')
-            idx2 = list(h['labels'].attrs['names']).index('cent_slow_train')
+            idx1 = list(h['labels'].attrs['names']).index('pitch_deg')
+            idx2 = list(h['labels'].attrs['names']).index('yaw_deg')
             label_array = h['labels'][:, [idx1, idx2]]
             labels = True
             
@@ -90,28 +90,28 @@ for file in os.listdir(test_data):
                 pred = model(img_t)[0]
 
             # store x,y tensor as two floats
-            ## t_pred = float(pred[0])
-            t_pred = pred
+            x_pred = float(pred[0])
+            y_pred = float(pred[1])
 
             # if we have labels, print and store them in data frame
             if labels:
-                label = label_array[i_img] - 410
-                t_actual = label
-                print(f'PREDICTION: ({t_pred:<5f})  |  ACTUAL: ({t_actual:<5f})')
+                label = label_array[i_img]
+                x_actual, y_actual = label
+                print(f'PREDICTION: ({x_pred:<5f}, {y_pred:<5f})  |  ACTUAL: ({x_actual:<5f}, {y_actual:<5f})')
     
                 # compute the test losses and accumulate
                 loss += criterion(pred, torch.tensor(label)).item()
                 
-                # store result: [file name, image index, t prediction, t actual]
-                result = [file, i_img, t_pred, t_actual]
+                # store result: [file name, image index, x prediction, y prediction, x actual, y actual]
+                result = [file, i_img, x_pred, y_pred, x_actual, y_actual]
                 results.append(result)
 
             # if there are no labels
             else:
-                print(f'PREDICTION: {t_pred}')
+                print(f'PREDICTION: ({x_pred}, {y_pred})')
                 
-                # store result: [file name, image index, t prediction]
-                result = [file, i_img, t_pred]
+                # store result: [file name, image index, x prediction, y prediction]
+                result = [file, i_img, x_pred, y_pred]
                 results.append(result)
 
 # get the average loss
@@ -123,9 +123,9 @@ results_path = f'results/preds_{test_data.split("/")[-1]}_{path.split("/")[-1]}.
 
 # convert results to data frame
 if labels:
-    results_df = pd.DataFrame(results, columns=['File Name', 'Image Index', 'T Prediction', 'T Actual'])
+    results_df = pd.DataFrame(results, columns=['File Name', 'Image Index', 'X Prediction', 'Y Prediction', 'X Actual', 'Y Actual'])
 else:
-    results_df = pd.DataFrame(results, columns=['File Name', 'Image Index', 'T Prediction'])
+    results_df = pd.DataFrame(results, columns=['File Name', 'Image Index', 'X Prediction', 'Y Prediction'])
 
 # save results data frame to CSV file
 results_df.to_csv(results_path, index=False)
