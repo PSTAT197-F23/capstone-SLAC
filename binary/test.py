@@ -2,11 +2,12 @@
 
 Usage in terminal: 
 
-> python test.py arg1 arg2 arg3
+> python test.py arg1 arg2 arg3 arg4
 
 - arg1: number of activations in model architecture
-- arg2: model path (path to file containing trained model parameters)
-- arg3: test data path (path to folder containing testing data; not master file)
+- arg2: number of layers in ResNet
+- arg3: model path (path to file containing trained model parameters)
+- arg4: test data path (path to folder containing testing data; not master file)
 '''
 
 print('Importing modules...')
@@ -28,16 +29,25 @@ except:
     
 print('Number of activations:', activations)
 
+# store number of layers
+try:
+    layers = int(sys.argv[2])
+except:
+    print('Second argument must be an integer (number of layers)')
+    sys.exit(1) # halt execution
+    
+print('Number of layers:', layers)
+
 # store command line path argument
-path = sys.argv[2] 
+path = sys.argv[3] 
 print('Model path:', path)
 
 # store test data path argument
-test_data = sys.argv[3]
+test_data = sys.argv[4]
 
-# initialize resnet18 model
+# initialize resnet-layer model
 print('Initializing model...')
-model = create_resnet('cpu', 18, int(activations), 0)
+model = create_resnet('cpu', layers, int(activations), 0)
 
 # load model state dict
 print('Loading model state dict...')
@@ -97,7 +107,7 @@ for file in os.listdir(test_data):
             if labels:
                 label = label_array[i_img]
                 x_actual, y_actual = label
-                print(f'PREDICTION: ({x_pred:<5f}, {y_pred:<5f})  |  ACTUAL: ({x_actual:<5f}, {y_actual:<5f})')
+                print(f'PREDICTION: ({x_pred:>9f}, {y_pred:>9f})  |  ACTUAL: ({x_actual:>9f}, {y_actual:>9f})')
     
                 # compute the test losses and accumulate
                 loss += criterion(pred, torch.tensor(label)).item()
@@ -108,7 +118,7 @@ for file in os.listdir(test_data):
 
             # if there are no labels
             else:
-                print(f'PREDICTION: ({x_pred}, {y_pred})')
+                print(f'PREDICTION: ({x_pred:>9f}, {y_pred:>9f})')
                 
                 # store result: [file name, image index, x prediction, y prediction]
                 result = [file, i_img, x_pred, y_pred]
@@ -119,7 +129,7 @@ loss /= len(results)
 print(loss)
 
 # name of results file path
-results_path = f'results/preds_{test_data.split("/")[-1]}_{path.split("/")[-1]}.csv'
+results_path = f'results/preds_{path.split("/")[-1]}_{loss:.4f}.csv'
 
 # convert results to data frame
 if labels:
