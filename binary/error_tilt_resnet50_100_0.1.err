@@ -1,0 +1,51 @@
+  0%|          | 0/100 [00:00<?, ?it/s]  1%|          | 1/100 [06:28<10:41:47, 388.96s/it]  2%|▏         | 2/100 [12:58<10:35:41, 389.20s/it]  3%|▎         | 3/100 [19:36<10:35:42, 393.22s/it]  4%|▍         | 4/100 [26:13<10:31:28, 394.67s/it]  5%|▌         | 5/100 [32:54<10:28:38, 397.04s/it]  6%|▌         | 6/100 [39:33<10:23:05, 397.71s/it]  7%|▋         | 7/100 [46:10<10:16:01, 397.44s/it]  8%|▊         | 8/100 [52:46<10:08:44, 397.01s/it]  9%|▉         | 9/100 [59:20<10:00:39, 396.04s/it] 10%|█         | 10/100 [1:05:56<9:53:53, 395.93s/it] 11%|█         | 11/100 [1:12:33<9:48:07, 396.49s/it] 12%|█▏        | 12/100 [1:19:13<9:42:59, 397.49s/it] 13%|█▎        | 13/100 [1:25:52<9:36:55, 397.88s/it] 14%|█▍        | 14/100 [1:32:32<9:31:24, 398.66s/it] 15%|█▌        | 15/100 [1:39:12<9:25:14, 399.00s/it] 16%|█▌        | 16/100 [1:45:55<9:20:12, 400.15s/it] 17%|█▋        | 17/100 [1:52:39<9:15:11, 401.34s/it] 18%|█▊        | 18/100 [1:59:22<9:09:16, 401.91s/it] 19%|█▉        | 19/100 [2:06:09<9:04:27, 403.31s/it] 20%|██        | 20/100 [2:12:53<8:58:16, 403.71s/it] 21%|██        | 21/100 [2:19:40<8:52:39, 404.55s/it] 22%|██▏       | 22/100 [2:26:23<8:45:28, 404.22s/it] 23%|██▎       | 23/100 [2:33:10<8:39:35, 404.88s/it] 24%|██▍       | 24/100 [2:39:52<8:31:51, 404.11s/it] 25%|██▌       | 25/100 [2:46:38<8:25:36, 404.49s/it] 26%|██▌       | 26/100 [2:53:28<8:21:11, 406.38s/it] 27%|██▋       | 27/100 [3:00:17<8:15:06, 406.93s/it] 28%|██▊       | 28/100 [3:07:05<8:08:55, 407.44s/it] 29%|██▉       | 29/100 [3:13:47<7:59:59, 405.63s/it] 30%|███       | 30/100 [3:20:31<7:52:40, 405.15s/it] 31%|███       | 31/100 [3:27:15<7:45:42, 404.97s/it] 32%|███▏      | 32/100 [3:34:00<7:38:48, 404.83s/it] 33%|███▎      | 33/100 [3:40:47<7:32:53, 405.58s/it] 34%|███▍      | 34/100 [3:47:33<7:26:26, 405.85s/it] 35%|███▌      | 35/100 [3:54:21<7:20:05, 406.23s/it] 36%|███▌      | 36/100 [4:00:42<7:05:22, 398.78s/it] 37%|███▋      | 37/100 [4:07:03<6:53:06, 393.44s/it] 38%|███▊      | 38/100 [4:13:24<6:42:33, 389.57s/it] 39%|███▉      | 39/100 [4:19:45<6:33:29, 387.04s/it] 40%|████      | 40/100 [4:26:06<6:25:12, 385.20s/it] 41%|████      | 41/100 [4:32:26<6:17:25, 383.82s/it] 42%|████▏     | 42/100 [4:38:47<6:10:13, 382.99s/it] 43%|████▎     | 43/100 [4:45:08<6:03:11, 382.31s/it] 44%|████▍     | 44/100 [4:51:29<5:56:28, 381.95s/it] 45%|████▌     | 45/100 [4:57:49<5:49:33, 381.33s/it] 46%|████▌     | 46/100 [5:04:10<5:43:14, 381.38s/it] 47%|████▋     | 47/100 [5:10:31<5:36:35, 381.05s/it] 48%|████▊     | 48/100 [5:16:52<5:30:11, 381.00s/it] 49%|████▉     | 49/100 [5:23:13<5:23:58, 381.15s/it] 50%|█████     | 50/100 [5:29:33<5:17:24, 380.89s/it] 51%|█████     | 51/100 [5:35:54<5:11:00, 380.82s/it] 52%|█████▏    | 52/100 [5:42:15<5:04:39, 380.81s/it] 53%|█████▎    | 53/100 [5:48:34<4:58:01, 380.45s/it] 54%|█████▍    | 54/100 [5:54:54<4:51:34, 380.31s/it] 55%|█████▌    | 55/100 [6:01:16<4:45:31, 380.70s/it] 56%|█████▌    | 56/100 [6:07:36<4:39:04, 380.56s/it] 57%|█████▋    | 57/100 [6:13:57<4:32:39, 380.46s/it] 58%|█████▊    | 58/100 [6:20:17<4:26:21, 380.52s/it] 59%|█████▉    | 59/100 [6:26:38<4:20:04, 380.59s/it] 60%|██████    | 60/100 [6:32:59<4:13:49, 380.75s/it] 61%|██████    | 61/100 [6:39:19<4:07:24, 380.62s/it] 62%|██████▏   | 62/100 [6:45:39<4:00:57, 380.46s/it] 63%|██████▎   | 63/100 [6:52:00<3:54:34, 380.40s/it] 64%|██████▍   | 64/100 [6:58:21<3:48:20, 380.56s/it] 65%|██████▌   | 65/100 [7:04:41<3:41:57, 380.49s/it] 66%|██████▌   | 66/100 [7:11:03<3:35:54, 381.02s/it] 67%|██████▋   | 67/100 [7:17:24<3:29:32, 380.99s/it] 68%|██████▊   | 68/100 [7:23:45<3:23:07, 380.85s/it] 69%|██████▉   | 69/100 [7:30:05<3:16:39, 380.64s/it] 70%|███████   | 70/100 [7:36:26<3:10:25, 380.85s/it] 71%|███████   | 71/100 [7:42:47<3:04:03, 380.81s/it] 72%|███████▏  | 72/100 [7:49:07<2:57:40, 380.74s/it] 73%|███████▎  | 73/100 [7:55:29<2:51:24, 380.91s/it] 74%|███████▍  | 74/100 [8:01:49<2:44:57, 380.68s/it] 75%|███████▌  | 75/100 [8:08:09<2:38:35, 380.60s/it] 76%|███████▌  | 76/100 [8:14:30<2:32:16, 380.67s/it] 77%|███████▋  | 77/100 [8:20:51<2:25:54, 380.64s/it] 78%|███████▊  | 78/100 [8:27:11<2:19:32, 380.58s/it] 79%|███████▉  | 79/100 [8:33:32<2:13:15, 380.74s/it] 80%|████████  | 80/100 [8:39:53<2:06:52, 380.62s/it] 81%|████████  | 81/100 [8:46:13<2:00:32, 380.67s/it] 82%|████████▏ | 82/100 [8:52:35<1:54:15, 380.89s/it] 83%|████████▎ | 83/100 [8:58:55<1:47:49, 380.58s/it] 84%|████████▍ | 84/100 [9:05:16<1:41:31, 380.73s/it] 85%|████████▌ | 85/100 [9:11:37<1:35:11, 380.78s/it] 86%|████████▌ | 86/100 [9:17:57<1:28:49, 380.66s/it] 87%|████████▋ | 87/100 [9:24:17<1:22:27, 380.55s/it] 88%|████████▊ | 88/100 [9:30:37<1:16:03, 380.28s/it] 89%|████████▉ | 89/100 [9:36:58<1:09:45, 380.47s/it] 90%|█████████ | 90/100 [9:43:18<1:03:24, 380.45s/it] 91%|█████████ | 91/100 [9:49:39<57:05, 380.60s/it]   92%|█████████▏| 92/100 [9:56:01<50:46, 380.82s/it] 93%|█████████▎| 93/100 [10:02:22<44:26, 380.97s/it] 94%|█████████▍| 94/100 [10:08:42<38:05, 380.88s/it] 95%|█████████▌| 95/100 [10:15:03<31:43, 380.78s/it] 96%|█████████▌| 96/100 [10:21:24<25:22, 380.74s/it] 97%|█████████▋| 97/100 [10:27:44<19:01, 380.53s/it] 98%|█████████▊| 98/100 [10:34:05<12:41, 380.88s/it] 99%|█████████▉| 99/100 [10:40:26<06:20, 380.70s/it]100%|██████████| 100/100 [10:46:45<00:00, 380.32s/it]100%|██████████| 100/100 [10:46:45<00:00, 388.06s/it]
+Traceback (most recent call last):
+  File "/home/sichenzhong/capstone-SLAC/environment/train.py", line 178, in <module>
+    results = train(model=model,
+  File "/home/sichenzhong/capstone-SLAC/environment/engine.py", line 226, in train
+    writer.add_graph(
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/utils/tensorboard/writer.py", line 840, in add_graph
+    graph(model, input_to_model, verbose, use_strict_trace)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/utils/tensorboard/_pytorch_graph.py", line 344, in graph
+    raise e
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/utils/tensorboard/_pytorch_graph.py", line 338, in graph
+    trace = torch.jit.trace(model, args, strict=use_strict_trace)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/jit/_trace.py", line 750, in trace
+    return trace_module(
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/jit/_trace.py", line 967, in trace_module
+    module._c._create_method_from_trace(
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1118, in _slow_forward
+    result = self.forward(*input, **kwargs)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/nn/modules/container.py", line 139, in forward
+    input = module(input)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1118, in _slow_forward
+    result = self.forward(*input, **kwargs)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torchvision/models/resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torchvision/models/resnet.py", line 275, in _forward_impl
+    x = self.layer3(x)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1118, in _slow_forward
+    result = self.forward(*input, **kwargs)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/nn/modules/container.py", line 139, in forward
+    input = module(input)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1118, in _slow_forward
+    result = self.forward(*input, **kwargs)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torchvision/models/resnet.py", line 154, in forward
+    out = self.conv3(out)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1130, in _call_impl
+    return forward_call(*input, **kwargs)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/nn/modules/module.py", line 1118, in _slow_forward
+    result = self.forward(*input, **kwargs)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 457, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "/home/jay/Softwares/anaconda3/envs/pytorch112_gpu116/lib/python3.9/site-packages/torch/nn/modules/conv.py", line 453, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: CUDA out of memory. Tried to allocate 338.00 MiB (GPU 0; 31.75 GiB total capacity; 30.13 GiB already allocated; 124.00 MiB free; 30.44 GiB reserved in total by PyTorch) If reserved memory is >> allocated memory try setting max_split_size_mb to avoid fragmentation.  See documentation for Memory Management and PYTORCH_CUDA_ALLOC_CONF

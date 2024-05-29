@@ -1,0 +1,90 @@
+cuda
+tilt dataset used!
+=============================================================================================================================
+Layer (type (var_name))                       Input Shape          Output Shape         Param #              Trainable
+=============================================================================================================================
+Sequential (Sequential)                       [16, 1, 820, 820]    [16, 2]              --                   True
+├─ResNet (0)                                  [16, 1, 820, 820]    [16, 1000]           --                   True
+│    └─Conv2d (conv1)                         [16, 1, 820, 820]    [16, 64, 410, 410]   3,136                True
+│    └─BatchNorm2d (bn1)                      [16, 64, 410, 410]   [16, 64, 410, 410]   128                  True
+│    └─ReLU (relu)                            [16, 64, 410, 410]   [16, 64, 410, 410]   --                   --
+│    └─MaxPool2d (maxpool)                    [16, 64, 410, 410]   [16, 64, 205, 205]   --                   --
+│    └─Sequential (layer1)                    [16, 64, 205, 205]   [16, 64, 205, 205]   --                   True
+│    │    └─BasicBlock (0)                    [16, 64, 205, 205]   [16, 64, 205, 205]   73,984               True
+│    │    └─BasicBlock (1)                    [16, 64, 205, 205]   [16, 64, 205, 205]   73,984               True
+│    └─Sequential (layer2)                    [16, 64, 205, 205]   [16, 128, 103, 103]  --                   True
+│    │    └─BasicBlock (0)                    [16, 64, 205, 205]   [16, 128, 103, 103]  230,144              True
+│    │    └─BasicBlock (1)                    [16, 128, 103, 103]  [16, 128, 103, 103]  295,424              True
+│    └─Sequential (layer3)                    [16, 128, 103, 103]  [16, 256, 52, 52]    --                   True
+│    │    └─BasicBlock (0)                    [16, 128, 103, 103]  [16, 256, 52, 52]    919,040              True
+│    │    └─BasicBlock (1)                    [16, 256, 52, 52]    [16, 256, 52, 52]    1,180,672            True
+│    └─Sequential (layer4)                    [16, 256, 52, 52]    [16, 512, 26, 26]    --                   True
+│    │    └─BasicBlock (0)                    [16, 256, 52, 52]    [16, 512, 26, 26]    3,673,088            True
+│    │    └─BasicBlock (1)                    [16, 512, 26, 26]    [16, 512, 26, 26]    4,720,640            True
+│    └─AdaptiveAvgPool2d (avgpool)            [16, 512, 26, 26]    [16, 512, 1, 1]      --                   --
+│    └─Linear (fc)                            [16, 512]            [16, 1000]           513,000              True
+├─Linear (1)                                  [16, 1000]           [16, 200]            200,200              True
+├─ReLU (2)                                    [16, 200]            [16, 200]            --                   --
+├─Linear (3)                                  [16, 200]            [16, 2]              402                  True
+=============================================================================================================================
+Total params: 11,883,842
+Trainable params: 11,883,842
+Non-trainable params: 0
+Total mult-adds (G): 378.05
+=============================================================================================================================
+Input size (MB): 43.03
+Forward/backward pass size (MB): 8575.70
+Params size (MB): 47.54
+Estimated Total Size (MB): 8666.27
+=============================================================================================================================
+=============================================================================================================================
+Layer (type (var_name))                       Input Shape          Output Shape         Param #              Trainable
+=============================================================================================================================
+Sequential (Sequential)                       [16, 1, 820, 820]    [16, 2]              --                   True
+├─ResNet (0)                                  [16, 1, 820, 820]    [16, 1000]           --                   True
+│    └─Conv2d (conv1)                         [16, 1, 820, 820]    [16, 64, 410, 410]   3,136                True
+│    └─BatchNorm2d (bn1)                      [16, 64, 410, 410]   [16, 64, 410, 410]   128                  True
+│    └─ReLU (relu)                            [16, 64, 410, 410]   [16, 64, 410, 410]   --                   --
+│    └─MaxPool2d (maxpool)                    [16, 64, 410, 410]   [16, 64, 205, 205]   --                   --
+│    └─Sequential (layer1)                    [16, 64, 205, 205]   [16, 64, 205, 205]   --                   True
+│    │    └─BasicBlock (0)                    [16, 64, 205, 205]   [16, 64, 205, 205]   73,984               True
+│    │    └─BasicBlock (1)                    [16, 64, 205, 205]   [16, 64, 205, 205]   73,984               True
+│    └─Sequential (layer2)                    [16, 64, 205, 205]   [16, 128, 103, 103]  --                   True
+│    │    └─BasicBlock (0)                    [16, 64, 205, 205]   [16, 128, 103, 103]  230,144              True
+│    │    └─BasicBlock (1)                    [16, 128, 103, 103]  [16, 128, 103, 103]  295,424              True
+│    └─Sequential (layer3)                    [16, 128, 103, 103]  [16, 256, 52, 52]    --                   True
+│    │    └─BasicBlock (0)                    [16, 128, 103, 103]  [16, 256, 52, 52]    919,040              True
+│    │    └─BasicBlock (1)                    [16, 256, 52, 52]    [16, 256, 52, 52]    1,180,672            True
+│    └─Sequential (layer4)                    [16, 256, 52, 52]    [16, 512, 26, 26]    --                   True
+│    │    └─BasicBlock (0)                    [16, 256, 52, 52]    [16, 512, 26, 26]    3,673,088            True
+│    │    └─BasicBlock (1)                    [16, 512, 26, 26]    [16, 512, 26, 26]    4,720,640            True
+│    └─AdaptiveAvgPool2d (avgpool)            [16, 512, 26, 26]    [16, 512, 1, 1]      --                   --
+│    └─Linear (fc)                            [16, 512]            [16, 1000]           513,000              True
+├─Linear (1)                                  [16, 1000]           [16, 200]            200,200              True
+├─ReLU (2)                                    [16, 200]            [16, 200]            --                   --
+├─Linear (3)                                  [16, 200]            [16, 2]              402                  True
+=============================================================================================================================
+Total params: 11,883,842
+Trainable params: 11,883,842
+Non-trainable params: 0
+Total mult-adds (G): 378.05
+=============================================================================================================================
+Input size (MB): 43.03
+Forward/backward pass size (MB): 8575.70
+Params size (MB): 47.54
+Estimated Total Size (MB): 8666.27
+=============================================================================================================================
+The optimizer used is SGD (
+Parameter Group 0
+    dampening: 0
+    foreach: None
+    lr: 0.05
+    maximize: False
+    momentum: 0.0
+    nesterov: False
+    weight_decay: 0.0
+)
+The loss used is L1Loss()
+On batch number 1
+batch 1/917: loss=1.08batch 2/917: loss=1.07batch 3/917: loss=1.63batch 4/917: loss=1.24batch 5/917: loss=1.46batch 6/917: loss=1.44batch 7/917: loss=1.17batch 8/917: loss=1.42batch 9/917: loss=1.31batch 10/917: loss=1.43batch 11/917: loss=1.25batch 12/917: loss=1.02batch 13/917: loss=1.20batch 14/917: loss=1.54batch 15/917: loss=1.40batch 16/917: loss=1.47batch 17/917: loss=1.20batch 18/917: loss=1.06batch 19/917: loss=1.20batch 20/917: loss=1.16batch 21/917: loss=1.32batch 22/917: loss=1.09batch 23/917: loss=1.62batch 24/917: loss=0.99batch 25/917: loss=0.99batch 26/917: loss=1.12batch 27/917: loss=0.99batch 28/917: loss=1.69batch 29/917: loss=1.27batch 30/917: loss=1.31batch 31/917: loss=1.27batch 32/917: loss=1.02batch 33/917: loss=1.39batch 34/917: loss=1.26batch 35/917: loss=1.43batch 36/917: loss=1.24batch 37/917: loss=0.93batch 38/917: loss=1.57batch 39/917: loss=1.03batch 40/917: loss=1.56batch 41/917: loss=1.23batch 42/917: loss=1.03batch 43/917: loss=1.49batch 44/917: loss=1.42batch 45/917: loss=1.49batch 46/917: loss=1.27batch 47/917: loss=1.21batch 48/917: loss=1.64batch 49/917: loss=0.98batch 50/917: loss=1.30batch 51/917: loss=1.24batch 52/917: loss=1.23batch 53/917: loss=1.71batch 54/917: loss=0.86batch 55/917: loss=1.05batch 56/917: loss=1.35batch 57/917: loss=1.37batch 58/917: loss=1.13batch 59/917: loss=1.38batch 60/917: loss=1.37batch 61/917: loss=1.57batch 62/917: loss=1.38batch 63/917: loss=1.29batch 64/917: loss=1.12batch 65/917: loss=1.02batch 66/917: loss=1.36batch 67/917: loss=1.20batch 68/917: loss=1.22batch 69/917: loss=1.44batch 70/917: loss=0.76batch 71/917: loss=1.23batch 72/917: loss=1.19batch 73/917: loss=1.33batch 74/917: loss=1.17batch 75/917: loss=1.30batch 76/917: loss=1.45batch 77/917: loss=1.33batch 78/917: loss=1.36batch 79/917: loss=1.20batch 80/917: loss=1.10batch 81/917: loss=1.50batch 82/917: loss=1.30batch 83/917: loss=1.07batch 84/917: loss=1.34batch 85/917: loss=1.36batch 86/917: loss=1.34batch 87/917: loss=1.46batch 88/917: loss=1.15batch 89/917: loss=0.99batch 90/917: loss=1.14batch 91/917: loss=1.06batch 92/917: loss=1.11batch 93/917: loss=1.36batch 94/917: loss=1.30batch 95/917: loss=1.21batch 96/917: loss=1.36batch 97/917: loss=1.23batch 98/917: loss=1.46batch 99/917: loss=1.25batch 100/917: loss=1.25On batch number 101
+batch 101/917: loss=1.53batch 102/917: loss=1.29batch 103/917: loss=1.27batch 104/917: loss=1.27batch 105/917: loss=1.00batch 106/917: loss=1.33batch 107/917: loss=1.10batch 108/917: loss=1.70batch 109/917: loss=1.18batch 110/917: loss=0.96batch 111/917: loss=1.56batch 112/917: loss=1.24batch 113/917: loss=1.54batch 114/917: loss=0.88batch 115/917: loss=0.99batch 116/917: loss=0.93batch 117/917: loss=1.54batch 118/917: loss=0.99batch 119/917: loss=1.30batch 120/917: loss=1.00batch 121/917: loss=1.49batch 122/917: loss=1.72batch 123/917: loss=1.40batch 124/917: loss=1.21batch 125/917: loss=1.44batch 126/917: loss=1.31batch 127/917: loss=1.22batch 128/917: loss=1.25batch 129/917: loss=1.24batch 130/917: loss=1.08batch 131/917: loss=1.48batch 132/917: loss=1.10batch 133/917: loss=1.40batch 134/917: loss=1.22batch 135/917: loss=1.44batch 136/917: loss=1.13batch 137/917: loss=1.41batch 138/917: loss=1.40batch 139/917: loss=1.14batch 140/917: loss=1.39batch 141/917: loss=1.20batch 142/917: loss=1.12batch 143/917: loss=1.41batch 144/917: loss=1.23batch 145/917: loss=1.04batch 146/917: loss=1.34batch 147/917: loss=1.20batch 148/917: loss=1.25batch 149/917: loss=0.98batch 150/917: loss=1.20batch 151/917: loss=1.60batch 152/917: loss=1.14batch 153/917: loss=0.87batch 154/917: loss=1.27batch 155/917: loss=1.25batch 156/917: loss=1.21batch 157/917: loss=1.11batch 158/917: loss=0.86batch 159/917: loss=1.05batch 160/917: loss=1.07batch 161/917: loss=1.38batch 162/917: loss=1.68batch 163/917: loss=1.29batch 164/917: loss=1.23batch 165/917: loss=1.52batch 166/917: loss=1.57batch 167/917: loss=1.37batch 168/917: loss=1.32batch 169/917: loss=1.30batch 170/917: loss=1.31batch 171/917: loss=1.42batch 172/917: loss=1.40batch 173/917: loss=1.32batch 174/917: loss=1.37batch 175/917: loss=1.33
