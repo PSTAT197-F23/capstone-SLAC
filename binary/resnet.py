@@ -348,11 +348,17 @@ summary(model, (1, 820, 820))
     
 # print("Finish!!")
 
+import torch
+import torch.nn as nn
+import torch.optim as optim
+
+# Assuming model, train_loader, val_loader, and device are already defined
+
 criterion = nn.L1Loss()
 # optimizer = optim.Adam(model.parameters(), lr=0.001)
-optimizer = torch.optim.SGD(model.parameters(), lr=0.001, weight_decay = 0.005, momentum = 0.9)  
+optimizer = torch.optim.SGD(model.parameters(), lr=0.001, weight_decay=0.005, momentum=0.9)
 
-num_epochs = 10
+num_epochs = 100
 
 for epoch in range(num_epochs):
     # Set model to train mode
@@ -382,7 +388,7 @@ for epoch in range(num_epochs):
         running_loss += loss.item()
         if batch_idx % 100 == 99:    # Print every 100 mini-batches
             print('[%d, %5d] loss: %.3f' %
-                  (epoch + 1, batch_idx + 1, running_loss / len(train_loader)))
+                  (epoch + 1, batch_idx + 1, running_loss / (batch_idx + 1)))
             running_loss = 0.0
     
     # Validation
@@ -395,9 +401,10 @@ for epoch in range(num_epochs):
             val_loss += criterion(outputs, labels).item()
 
     # Print validation loss
-    print('Validation Loss: {:.4f}'.format(val_loss / len(val_loader)))
+    print('Epoch [%d/%d], Validation Loss: %.4f' % (epoch + 1, num_epochs, val_loss / len(val_loader)))
 
 print('Finished Training')
+
 
 # Plotting the training and validation losses
 plt.plot(running_loss / len(train_loader), label='Training Loss')
